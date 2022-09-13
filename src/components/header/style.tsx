@@ -10,7 +10,9 @@ export const CustomHeader = styled.header`
     text-decoration: overline;
     color: white;
     font-weight: 100;
-    margin-right: 5px;
+  }
+  & .headerItem {
+    margin-right: 25px;
   }
 `;
 export const Dots = styled.img`

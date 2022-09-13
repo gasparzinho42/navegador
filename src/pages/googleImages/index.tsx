@@ -4,16 +4,16 @@ import Header from "../../components/header";
 import Input from "../../components/input";
 import { Wrapper } from "./style";
 
-const LandingPage: React.FC = () => {
+const GoogleImages: React.FC = () => {
   return (
     <React.Fragment>
       <Wrapper>
-        <Header />
-        <Input />
+        <Header isImages />
+        <Input isImages />
         <Footer />
       </Wrapper>
     </React.Fragment>
   );
 };
 
-export default LandingPage;
+export default GoogleImages;

@@ -22,4 +22,9 @@ export const RealInput = styled.input`
   &::placeholder {
     color: whitesmoke;
   }
+  // para galaxy Fold
+  @media (max-width: 300px) {
+    font-size: 7px;
+    font-weight: 700;
+  }
 `;

@@ -1,20 +1,25 @@
 import React from "react";
-import DotsMenu from "../dots";
+import DotsMenu from "./components/dots";
 import { CustomHeader } from "./style";
+import { Link } from "react-router-dom";
 
 // import { Container } from './styles';
-
-const Header: React.FC = () => {
+interface headerProps {
+  isImages?: boolean;
+}
+const Header: React.FC<headerProps> = ({ isImages }) => {
   return (
     <CustomHeader>
-      <span>
-        <a href="http://https://mail.google.com/mail/?authuser=0&ogbl">Gmail</a>
-      </span>
-      <span>
-        <a href="http://https://www.google.com.br/imghp?hl=pt-BR&authuser=0&ogbl">
-          Imagens
-        </a>
-      </span>
+      {!isImages && (
+        <React.Fragment>
+          <span className="headerItem">
+            <a href="https://mail.google.com">Gmail</a>
+          </span>
+          <span className="headerItem">
+            <Link to={"/images"}>Imagens</Link>
+          </span>
+        </React.Fragment>
+      )}
       <DotsMenu />
     </CustomHeader>
   );

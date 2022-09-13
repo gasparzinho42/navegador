@@ -3,12 +3,15 @@ import Logo from "../logo";
 import { letterObject } from "../logo/types";
 import { Container, FakeInput, RealInput } from "./style";
 
-// import { Container } from './styles';
-
-const Input: React.FC = () => {
+interface inputProps {
+  isImages?: boolean;
+}
+const Input: React.FC<inputProps> = ({ isImages }) => {
   const [logoInfo, setLogo] = useState<letterObject[]>([]);
+  const [subLogoInfo, setSubLogo] = useState<letterObject[]>([]);
   const [value, setValue] = useState<string>("");
   const logoLetters = ["G", "O", "O", "G", "L", "E"];
+  const subLogoLetters = ["I", "M", "A", "G", "E", "S"];
 
   // descomentar pra ativar cores totalmente aleatórias
   //   const colorRandomizer = () => {
@@ -44,6 +47,15 @@ const Input: React.FC = () => {
     return hexadecimals[randomindex];
   };
   const loadLogoLetters = () => {
+    if (isImages) {
+      const result = subLogoLetters.map((letter) => {
+        return {
+          letter: letter,
+          color: colorRandomizer(),
+        };
+      });
+      setSubLogo(result);
+    }
     const result = logoLetters.map((letter) => {
       return {
         letter: letter,
@@ -58,12 +70,17 @@ const Input: React.FC = () => {
       window.open("http://google.com/search?q=" + value, "_self");
     }
   };
+
   useEffect(() => {
     loadLogoLetters();
+    // eslint-disable-next-line
   }, []);
   return (
     <Container>
       <Logo onClick={loadLogoLetters} letters={logoInfo} />
+      {isImages && (
+        <Logo onClick={loadLogoLetters} letters={subLogoInfo} isSubLogo />
+      )}
       <FakeInput>
         <RealInput
           placeholder="O que vamos descobrir hoje?..."
